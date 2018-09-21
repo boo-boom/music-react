@@ -15,7 +15,7 @@ export function home(state=stateDefault, action) {
 
 export function getBanner() {
     return dispatch => {
-        axios.get('/api/banner').then(res => {
+        axios.get('/banner').then(res => {
             if(res.data.code === 200) {
                 dispatch({
                     type: 'get_banner',

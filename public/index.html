@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>React Music</title>
+    <script>
+      var resetStyle = function () {
+        var win = window;
+        var doc = win.document;
+        var scale = win.screen.width / 750;
+        var metaEl = doc.querySelector('meta[name="viewport"]');
+        if (!metaEl) {
+            metaEl = doc.createElement('meta');
+            metaEl.setAttribute('name', 'viewport');
+            doc.head.appendChild(metaEl);
+        }
+        metaEl.setAttribute('content', 'width=750, user-scalable=no,initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale);
+      };
+      resetStyle();
+      window.addEventListener('resize', resetStyle, false);
+    </script>
+  </head>
+  <body>
+    <div id="root" class="pb"></div>
+  </body>
+</html>

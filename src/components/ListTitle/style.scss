@@ -1,0 +1,14 @@
+.list-title-container {
+    font-size: 26px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    .iconfont {
+        font-weight: bold;
+        display: inline-block;
+        font-size: 18px;
+        transform: rotate(-90deg);
+        margin-left: 10px;
+    }
+}

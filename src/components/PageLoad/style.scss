@@ -1,0 +1,10 @@
+.page-load-container {
+    height: 100vh;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .load-text {
+        font-size: 50px;
+    }
+}

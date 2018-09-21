@@ -1,0 +1,17 @@
+.react-id-swiper {
+	height: 328px;
+    .swiper-id-item {
+        height: 100%;
+        .item {
+            margin: 0 20px;
+            width: calc(100% - 40px);
+            height: 100%;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #eee;
+            & > img {
+                width: 100%;
+            }
+        }
+    }
+}

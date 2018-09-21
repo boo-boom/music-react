@@ -2,6 +2,7 @@
 npm start
 ```
 
+```
 src
 ├── components
 │   ├── CateNav
@@ -36,3 +37,4 @@ src
     └── player
 
 24 directories, 7 files
+```

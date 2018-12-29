@@ -16,7 +16,7 @@ export function playDetail(state=stateDefault, action) {
 
 export function getPlayDetail(id) {
     return dispatch => {
-        axios.get(`/playlist/detail?id=${id}`).then(res => {
+        axios.get(`/api/playlist/detail?id=${id}`).then(res => {
             if(res.data.code === 200) {
                 dispatch({
                     type: 'get_play_detail',

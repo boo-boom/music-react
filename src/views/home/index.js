@@ -30,7 +30,7 @@ class Home extends Component {
         this.getNewlist()
     }
     getPlaylist() {
-        axios.get('/top/playlist/highquality?limit=6').then(res => {
+        axios.get('/api/top/playlist/highquality?limit=6').then(res => {
             if(res.data.code === 200) {
                 this.setState(prevState => ({
                     playlists: res.data.playlists
@@ -39,7 +39,7 @@ class Home extends Component {
         })
     }
     getNewlist() {
-        axios.get('/top/playlist?limit=6&order=new').then(res => {
+        axios.get('/api/top/playlist?limit=6&order=new').then(res => {
             if(res.data.code === 200) {
                 this.setState(prevState => ({
                     newlists: res.data.playlists

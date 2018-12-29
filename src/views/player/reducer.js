@@ -8,10 +8,10 @@ const stateDeafult = {
 }
 
 const url = function(songId) {
-    return axios.get(`/music/url?id=${songId}`)
+    return axios.get(`/api/music/url?id=${songId}`)
 }
 const detail = function(songId) {
-    return axios.get(`/song/detail?ids=${songId}`)
+    return axios.get(`/api/song/detail?ids=${songId}`)
 }
 
 export function player(state=stateDeafult, action) {
@@ -87,7 +87,7 @@ export function getCurPlayerInfo(songId) {
                 })
             }));
         } else {
-            axios.get(`/music/url?id=${playerData[curIndex]['id']}`).then(res => {
+            axios.get(`/api/music/url?id=${playerData[curIndex]['id']}`).then(res => {
                 if(res.data.code === 200) {
                     const data = res.data.data[0]
                     newPlayerData[curIndex]['url'] = data.url

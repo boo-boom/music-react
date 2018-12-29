@@ -25,9 +25,9 @@ class Swiper extends Component {
           {
             banners.map(item => {
               return (
-                <div className="swiper-id-item" key={item.picUrl}>
+                <div className="swiper-id-item" key={item.imageUrl}>
                   <div className="item">
-                    <img src={item.picUrl} alt=""/>
+                    <img src={item.imageUrl} alt=""/>
                   </div>
                 </div>
               )

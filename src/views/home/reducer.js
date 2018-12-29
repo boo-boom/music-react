@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { $axios } from './../../axios';
 
 const stateDefault = {
     banners: []
@@ -15,15 +15,14 @@ export function home(state=stateDefault, action) {
 
 export function getBanner() {
     return dispatch => {
-        axios.get('/api/banner').then(res => {
-            if(res.data.code === 200) {
-                dispatch({
-                    type: 'get_banner',
-                    banners: res.data.banners
-                })
-            }
-        }).catch(err => {
-            console.log(err)
+        $axios({
+            method: 'get',
+            url: '/banner'
+        }).then(res => {
+            dispatch({
+                type: 'get_banner',
+                banners: res.banners
+            })
         })
     }
 }

@@ -1,17 +1,10 @@
-import axios from 'axios';
+import { $axiosAll } from './../../axios';
 
 const stateDeafult = {
     playerData: [],
     playing: false,
     curIndex: 0,
     songReady: false,
-}
-
-const url = function(songId) {
-    return axios.get(`/api/music/url?id=${songId}`)
-}
-const detail = function(songId) {
-    return axios.get(`/api/song/detail?ids=${songId}`)
 }
 
 export function player(state=stateDeafult, action) {
@@ -70,10 +63,18 @@ export function getCurPlayerInfo(songId) {
         const newPlayerData = playerData.slice()
         if(songId === undefined) return
         if(songId) {
-            axios.all([url(songId), detail(songId)]).then(axios.spread((res1, res2) => {
-                // 两个请求现在都执行完成
-                const _res1 = res1.data.data[0]
-                const _res2 = res2.data.songs[0]
+            $axiosAll([
+                {
+                    url: '/song/url',
+                    params: { id: songId }
+                },
+                {
+                    url: '/song/detail',
+                    params: { ids: songId }
+                }
+            ]).then(res => {
+                const _res1 = res[0].data[0]
+                const _res2 = res[1].songs[0]
                 newPlayerData[curIndex] = {}
                 newPlayerData[curIndex]['id'] = _res1.id
                 newPlayerData[curIndex]['url'] = _res1.url
@@ -85,20 +86,7 @@ export function getCurPlayerInfo(songId) {
                     type: 'get_cur_player_info',
                     playerData: newPlayerData,
                 })
-            }));
-        } else {
-            axios.get(`/api/music/url?id=${playerData[curIndex]['id']}`).then(res => {
-                if(res.data.code === 200) {
-                    const data = res.data.data[0]
-                    newPlayerData[curIndex]['url'] = data.url
-                    newPlayerData[curIndex]['type'] = data.type
-                    newPlayerData[curIndex]['size'] = data.size
-                    dispatch({
-                        type: 'get_cur_player_info',
-                        playerData: newPlayerData,
-                    })
-                }
-            })
+            });
         }
     }
 }

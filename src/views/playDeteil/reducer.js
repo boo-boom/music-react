@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { $axios } from './../../axios';
 import { Song } from '../../static/js/format';
 
 const stateDefault = {
@@ -16,13 +16,14 @@ export function playDetail(state=stateDefault, action) {
 
 export function getPlayDetail(id) {
     return dispatch => {
-        axios.get(`/api/playlist/detail?id=${id}`).then(res => {
-            if(res.data.code === 200) {
-                dispatch({
-                    type: 'get_play_detail',
-                    detail: res.data
-                })
-            }
+        $axios({
+            url: '/playlist/detail',
+            params: { id: id }
+        }).then(res => {
+            dispatch({
+                type: 'get_play_detail',
+                detail: res
+            })
         })
     }
 }

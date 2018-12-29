@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getBanner } from './reducer';
+import { $axios } from './../../axios';
 import SearchNav from './../../components/SearchNav';
 import Swiper from './../../components/Swiper';
 import CateNav from './../../components/CateNav';
@@ -30,21 +30,30 @@ class Home extends Component {
         this.getNewlist()
     }
     getPlaylist() {
-        axios.get('/api/top/playlist/highquality?limit=6').then(res => {
-            if(res.data.code === 200) {
-                this.setState(prevState => ({
-                    playlists: res.data.playlists
-                }))
+        $axios({
+            method: 'get',
+            url: '/top/playlist/highquality',
+            params: {
+                limit: 6
             }
+        }).then(res => {
+            this.setState(prevState => ({
+                playlists: res.playlists
+            }))
         })
     }
     getNewlist() {
-        axios.get('/api/top/playlist?limit=6&order=new').then(res => {
-            if(res.data.code === 200) {
-                this.setState(prevState => ({
-                    newlists: res.data.playlists
-                }))
+        $axios({
+            method: 'get',
+            url: '/top/playlist',
+            params: {
+                limit: 6,
+                order: 'new'
             }
+        }).then(res => {
+            this.setState(prevState => ({
+                newlists: res.playlists
+            }))
         })
     }
     goPlayDetail(id) {

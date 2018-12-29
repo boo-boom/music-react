@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './../store';
 import GlobalRoutes from './../route';
-import './../config';
+import '../axios';
 import './../static/style/reset.css';
 import './../static/font/iconfont.css';
 

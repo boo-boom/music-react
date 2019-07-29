@@ -11,6 +11,12 @@ import SongList from './../../components/SongList';
 import NavBlank from './../../components/NavBlank';
 import './style.scss';
 
+@connect(
+    state => ({
+        banners: state.home.banners
+    }),
+    { getBanner }
+)
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -78,12 +84,5 @@ class Home extends Component {
         )
     }
 };
-
-Home = connect(
-    state => ({
-        banners: state.home.banners
-    }),
-    { getBanner }
-)(Home);
 
 export default withRouter(Home);
